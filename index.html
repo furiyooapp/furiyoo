@@ -363,6 +363,9 @@
                         <button class="btn btn-outline-custom" onclick="findMatch()">
                             Find a Match with FurMatch
                         </button>
+                        <button class="btn btn-primary-custom" onclick="bookGrooming()">
+                            Book FurGroom
+                        </button>
                     </div>
                 </div>
             </div>
@@ -416,7 +419,40 @@
         </div>
     </section>
 
-    <!-- FurMatch Section -->
+    <!-- FurGroom Section -->
+    <section class="section-padding wave-divider">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 order-lg-2">
+                    <h2 class="section-title text-start">FurGroom</h2>
+                    <p class="lead mb-4">Professional grooming services at your doorstep. Our certified groomers provide premium care with nail trimming, bathing, styling, and health checkups for your beloved pets.</p>
+                    <button class="btn btn-primary-custom" style="background-color: var(--primary-teal); border-color: var(--primary-teal); color: white;" onclick="bookGroomingService()">
+                        Book Grooming
+                    </button>
+                </div>
+                <div class="col-lg-6 order-lg-1">
+                    <div class="row g-3">
+                        <div class="col-6 text-center">
+                            <div class="service-icon">✂️</div>
+                            <h5>Hair Cutting</h5>
+                        </div>
+                        <div class="col-6 text-center">
+                            <div class="service-icon">🛁</div>
+                            <h5>Bathing</h5>
+                        </div>
+                        <div class="col-6 text-center">
+                            <div class="service-icon">💅</div>
+                            <h5>Nail Trimming</h5>
+                        </div>
+                        <div class="col-6 text-center">
+                            <div class="service-icon">🩺</div>
+                            <h5>Health Check</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     <section class="about-section section-padding">
         <div class="container">
             <div class="row align-items-center">
@@ -442,7 +478,7 @@
         <div class="container">
             <h2 class="section-title">What Pet Parents Say</h2>
             <div class="row g-4">
-                <div class="col-lg-4">
+                <div class="col-lg-3">
                     <div class="testimonial-card">
                         <div class="testimonial-avatar">🐕</div>
                         <div class="stars mb-3">
@@ -453,18 +489,18 @@
                         <small class="text-muted">Golden Retriever Mom</small>
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-3">
                     <div class="testimonial-card">
                         <div class="testimonial-avatar">🐱</div>
                         <div class="stars mb-3">
                             ★★★★★
                         </div>
                         <p class="mb-3">"FurMatch helped me find the perfect breeding partner for my Persian cat. Professional and reliable service!"</p>
-                        <small class="text-muted">Rahul Gupta</small>
-                        <h6>Persian Cat Dad</h6>
+                        <h6>Rahul Gupta</h6>
+                        <small class="text-muted">Persian Cat Dad</small>
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-3">
                     <div class="testimonial-card">
                         <div class="testimonial-avatar">🐕</div>
                         <div class="stars mb-3">
@@ -473,6 +509,17 @@
                         <p class="mb-3">"One-stop solution for all my Labrador's needs. From food to grooming supplies - everything in one app!"</p>
                         <h6>Anita Desai</h6>
                         <small class="text-muted">Labrador Parent</small>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="testimonial-card">
+                        <div class="testimonial-avatar">🐩</div>
+                        <div class="stars mb-3">
+                            ★★★★★
+                        </div>
+                        <p class="mb-3">"FurGroom's doorstep service is amazing! My Poodle looks fabulous after every grooming session. Highly recommended!"</p>
+                        <h6>Vikram Singh</h6>
+                        <small class="text-muted">Poodle Parent</small>
                     </div>
                 </div>
             </div>
@@ -539,6 +586,18 @@
 
         function contactWhatsApp() {
             const message = "Hi Furiyoo! I'm interested in learning more about your pet care services. Can you help me?";
+            const whatsappUrl = `https://wa.me/919391912475?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+        }
+
+        function bookGrooming() {
+            const message = "Hello! I'd like to book FurGroom services for my pet. Can you share the available slots and pricing?";
+            const whatsappUrl = `https://wa.me/919391912475?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+        }
+
+        function bookGroomingService() {
+            const message = "Hi! I want to book a grooming session through FurGroom. Please let me know the available services and timings.";
             const whatsappUrl = `https://wa.me/919391912475?text=${encodeURIComponent(message)}`;
             window.open(whatsappUrl, '_blank');
         }
