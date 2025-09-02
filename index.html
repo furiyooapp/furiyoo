@@ -6,12 +6,19 @@
   <title>Furiyoo – All-in-one Pet Care</title>
   <style>
     /* ---------- Global Styles ---------- */
-    body {
-      font-family: "Segoe UI", sans-serif;
+    * {
       margin: 0;
-      background: #fdfdfd;
-      color: #333;
-      line-height: 1.6;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(120deg, #0f766e, #0d9488, #14b8a6);
+      background-size: 300% 300%;
+      animation: gradientMove 15s ease infinite;
+      color: #fff;
+      overflow-x: hidden;
+      position: relative;
     }
     h1, h2, h3 {
       margin: 0;
@@ -22,13 +29,38 @@
     }
     section {
       padding: 80px 20px;
+      position: relative;
+      z-index: 2;
     }
 
-    /* Gradient text utility */
-    .gradient-text {
-      background: linear-gradient(90deg, #0d9488, #14b8a6);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+    /* ---------- Glassmorphic Utility ---------- */
+    .glass {
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 16px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    /* ---------- Background Silhouettes ---------- */
+    .silhouette {
+      position: absolute;
+      opacity: 0.07;
+      filter: blur(2px);
+      animation: float 12s ease-in-out infinite alternate;
+      z-index: 1;
+    }
+    .silhouette.dog {
+      top: 10%;
+      left: 5%;
+      width: 180px;
+      animation-delay: 0s;
+    }
+    .silhouette.cat {
+      bottom: 10%;
+      right: 8%;
+      width: 140px;
+      animation-delay: 3s;
     }
 
     /* ---------- Hero Section ---------- */
@@ -39,57 +71,38 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-      background: linear-gradient(to bottom right, #ffffff, #e6fafa);
       padding: 20px;
       position: relative;
-      overflow: hidden;
-    }
-    .hero::after {
-      content: "";
-      position: absolute;
-      top: -100px;
-      left: -100px;
-      width: 400px;
-      height: 400px;
-      background: radial-gradient(circle at center, #14b8a620, transparent);
-      border-radius: 50%;
-      z-index: 0;
-      animation: float 6s ease-in-out infinite;
     }
     .hero h1 {
       font-size: 3rem;
-      font-weight: 900;
-      color: #0f766e;
-      z-index: 1;
-      animation: fadeDown 1s ease-out;
+      font-weight: 800;
+      color: #fff;
+      animation: fadeDown 1.5s ease-out;
     }
     .hero p {
-      margin-top: 20px;
+      margin-top: 15px;
       font-size: 1.3rem;
-      color: #555;
-      z-index: 1;
+      color: #e0fdfc;
     }
     .btn {
       display: inline-block;
-      margin-top: 30px;
-      padding: 14px 28px;
-      background: linear-gradient(90deg, #0d9488, #14b8a6);
+      margin-top: 25px;
+      padding: 14px 30px;
+      font-size: 1.1rem;
+      font-weight: 600;
       color: #fff;
       border-radius: 12px;
-      font-size: 1rem;
-      font-weight: 600;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
       transition: 0.3s;
-      z-index: 1;
+      animation: pulse 3s infinite;
     }
-    .btn:hover {
-      transform: translateY(-3px) scale(1.05);
-      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    .btn.glass:hover {
+      background: rgba(255,255,255,0.2);
     }
 
     /* ---------- About ---------- */
     .about {
-      max-width: 900px;
+      max-width: 850px;
       margin: auto;
       text-align: center;
     }
@@ -99,85 +112,66 @@
       margin-bottom: 20px;
     }
     .about p {
-      font-size: 1.15rem;
-      color: #444;
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: #f0fdfa;
     }
 
     /* ---------- Services ---------- */
-    .services {
-      background: #f0fdfd;
-    }
     .services h2 {
       text-align: center;
-      font-size: 2.3rem;
-      font-weight: bold;
-      margin-bottom: 50px;
+      font-size: 2.2rem;
+      margin-bottom: 40px;
     }
     .services-grid {
       display: grid;
-      gap: 30px;
+      gap: 25px;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       max-width: 1100px;
       margin: auto;
     }
     .card {
-      background: rgba(255,255,255,0.8);
-      border-radius: 20px;
-      padding: 30px;
+      padding: 25px;
       text-align: center;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-      backdrop-filter: blur(10px);
       transition: 0.4s;
     }
     .card:hover {
-      transform: translateY(-8px) scale(1.03);
-      box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+      transform: translateY(-10px);
     }
     .card h3 {
       margin-top: 15px;
       font-size: 1.4rem;
-      color: #0f766e;
     }
     .card p {
-      font-size: 1rem;
       margin-top: 12px;
-      color: #555;
+      font-size: 1rem;
+      color: #e0fdfa;
     }
     .card .btn {
-      margin-top: 18px;
-      padding: 10px 20px;
-      border-radius: 10px;
-      font-size: 0.95rem;
+      margin-top: 15px;
     }
 
     /* ---------- Reviews ---------- */
     .reviews h2 {
       text-align: center;
       font-size: 2.2rem;
-      margin-bottom: 50px;
+      margin-bottom: 40px;
     }
     .reviews-grid {
       display: grid;
-      gap: 25px;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       max-width: 1000px;
       margin: auto;
     }
     .review {
-      background: #fff;
-      padding: 25px;
-      border-radius: 16px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+      padding: 20px;
       font-style: italic;
-      transition: 0.3s;
-    }
-    .review:hover {
-      transform: translateY(-5px);
+      color: #f0fdfa;
     }
 
     /* ---------- Founder ---------- */
     .founder {
-      background: linear-gradient(to right, #e6fafa, #ffffff);
       text-align: center;
     }
     .founder h2 {
@@ -185,66 +179,78 @@
     }
     .founder p {
       margin-top: 20px;
-      font-size: 1.15rem;
-      color: #444;
+      font-size: 1.1rem;
+      color: #f0fdfa;
     }
     .founder .contact {
-      margin-top: 25px;
-      color: #555;
-      font-size: 1rem;
+      margin-top: 20px;
+      color: #d1fae5;
     }
 
     /* ---------- Footer ---------- */
     footer {
-      background: #0f766e;
-      color: #fff;
+      background: rgba(0,0,0,0.25);
+      backdrop-filter: blur(10px);
+      padding: 30px 20px;
       text-align: center;
-      padding: 40px 20px;
+      border-top: 1px solid rgba(255,255,255,0.25);
     }
     footer .links, footer .socials {
       display: flex;
       justify-content: center;
       gap: 25px;
+      margin-bottom: 15px;
       flex-wrap: wrap;
-      margin-bottom: 20px;
     }
     footer a {
-      color: #fff;
-      font-size: 0.95rem;
-      transition: 0.3s;
-    }
-    footer a:hover {
-      color: #d1fae5;
+      font-size: 1rem;
+      color: #f0fdfa;
     }
     footer p {
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       margin-top: 15px;
+      color: #d1fae5;
     }
 
     /* ---------- Animations ---------- */
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
     @keyframes fadeDown {
-      from { opacity: 0; transform: translateY(-40px); }
+      from { opacity: 0; transform: translateY(-30px); }
       to { opacity: 1; transform: translateY(0); }
     }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.07); }
+      100% { transform: scale(1); }
+    }
     @keyframes float {
-      0% { transform: translateY(0); }
-      50% { transform: translateY(20px); }
-      100% { transform: translateY(0); }
+      from { transform: translateY(0px); }
+      to { transform: translateY(30px); }
     }
   </style>
 </head>
 <body>
 
+  <!-- Background Silhouettes -->
+  <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="Dog" class="silhouette dog">
+  <img src="https://cdn-icons-png.flaticon.com/512/616/616430.png" alt="Cat" class="silhouette cat">
+
   <!-- Hero -->
   <section class="hero">
-    <h1 class="gradient-text">All-in-one pet care at your fingertips – Furiyoo</h1>
-    <p>Match. Feed. Groom. Train. Board. All in one app.</p>
-    <a href="https://wa.me/9391912475?text=Hi%20Furiyoo!%20I’m%20interested%20in%20your%20services." target="_blank" class="btn">Chat with us on WhatsApp</a>
+    <div class="glass" style="padding: 40px; max-width: 750px;">
+      <h1>All-in-one pet care at your fingertips – Furiyoo</h1>
+      <p>Match. Feed. Groom. Train. Board. All in one app.</p>
+      <a href="https://wa.me/9391912475?text=Hi%20Furiyoo!%20I’m%20interested%20in%20your%20services." target="_blank" class="btn glass">Chat with us on WhatsApp</a>
+    </div>
   </section>
 
   <!-- About -->
-  <section class="about" id="about">
-    <h2 class="gradient-text">About Furiyoo</h2>
+  <section class="about glass" id="about">
+    <h2>About Furiyoo</h2>
     <p>
       Furiyoo is a one-stop pet care platform designed to make pet parenting easier, safer, and happier. 
       From verified matchmaking with FurMatch, 10-min food delivery with FurMart, doorstep FurGroom, expert FurTraining, 
@@ -254,39 +260,39 @@
 
   <!-- Services -->
   <section class="services" id="services">
-    <h2 class="gradient-text">Our Services</h2>
+    <h2>Our Services</h2>
     <div class="services-grid">
-      <div class="card">
+      <div class="card glass">
         <h3>FurMatch</h3>
         <p>Verified Pet Matchmaking for safe & ethical breeding.</p>
-        <a href="https://wa.me/9391912475?text=Hi%20Furiyoo!%20I’d%20like%20to%20find%20a%20safe%20match%20for%20my%20pet.%20Can%20you%20help%20me?" target="_blank" class="btn">Connect on WhatsApp</a>
+        <a href="https://wa.me/9391912475?text=Hi%20Furiyoo!%20I’d%20like%20to%20find%20a%20safe%20match%20for%20my%20pet.%20Can%20you%20help%20me?" target="_blank" class="btn glass">Connect on WhatsApp</a>
       </div>
-      <div class="card">
+      <div class="card glass">
         <h3>FurMart</h3>
         <p>10-Minute Delivery of food, toys & essentials.</p>
-        <a href="https://wa.me/9391912475?text=Hi%20Furiyoo!%20I%20want%20to%20order%20food/supplies%20for%20my%20pet.%20Please%20guide%20me." target="_blank" class="btn">Connect on WhatsApp</a>
+        <a href="https://wa.me/9391912475?text=Hi%20Furiyoo!%20I%20want%20to%20order%20food/supplies%20for%20my%20pet.%20Please%20guide%20me." target="_blank" class="btn glass">Connect on WhatsApp</a>
       </div>
-      <div class="card">
+      <div class="card glass">
         <h3>FurGroom</h3>
         <p>Professional doorstep grooming in spa vans.</p>
-        <a href="https://wa.me/9391912475?text=Hi%20Furiyoo!%20I’d%20like%20to%20book%20a%20grooming%20session%20for%20my%20pet.%20What%20slots%20are%20available?" target="_blank" class="btn">Connect on WhatsApp</a>
+        <a href="https://wa.me/9391912475?text=Hi%20Furiyoo!%20I’d%20like%20to%20book%20a%20grooming%20session%20for%20my%20pet.%20What%20slots%20are%20available?" target="_blank" class="btn glass">Connect on WhatsApp</a>
       </div>
-      <div class="card">
+      <div class="card glass">
         <h3>FurTraining</h3>
         <p>Expert trainers for obedience & tricks.</p>
-        <a href="https://wa.me/9391912475?text=Hi%20Furiyoo!%20I’m%20interested%20in%20training%20for%20my%20dog.%20Can%20you%20share%20the%20details?" target="_blank" class="btn">Connect on WhatsApp</a>
+        <a href="https://wa.me/9391912475?text=Hi%20Furiyoo!%20I’m%20interested%20in%20training%20for%20my%20dog.%20Can%20you%20share%20the%20details?" target="_blank" class="btn glass">Connect on WhatsApp</a>
       </div>
-      <div class="card">
+      <div class="card glass">
         <h3>FurBoarding</h3>
         <p>Safe & loving boarding while you’re away.</p>
-        <a href="https://wa.me/9391912475?text=Hi%20Furiyoo!%20I%20need%20boarding%20services%20for%20my%20pet.%20Can%20you%20tell%20me%20how%20it%20works?" target="_blank" class="btn">Connect on WhatsApp</a>
+        <a href="https://wa.me/9391912475?text=Hi%20Furiyoo!%20I%20need%20boarding%20services%20for%20my%20pet.%20Can%20you%20tell%20me%20how%20it%20works?" target="_blank" class="btn glass">Connect on WhatsApp</a>
       </div>
     </div>
   </section>
 
   <!-- Reviews -->
-  <section class="reviews">
-    <h2 class="gradient-text">What Pet Parents Say</h2>
+  <section class="reviews glass">
+    <h2>What Pet Parents Say</h2>
     <div class="reviews-grid">
       <div class="review">“FurMatch helped me find a safe partner for my Labrador – smooth process, trustworthy service.”</div>
       <div class="review">“FurMart delivered food in 8 minutes, life saver!”</div>
@@ -295,8 +301,8 @@
   </section>
 
   <!-- Founder -->
-  <section class="founder" id="contact">
-    <h2 class="gradient-text">Meet the Founder</h2>
+  <section class="founder glass" id="contact">
+    <h2>Meet the Founder</h2>
     <p>
       Founded by <strong>Avinaash</strong>, a passionate pet parent who turned his personal challenges into India’s first complete pet ecosystem.
     </p>
