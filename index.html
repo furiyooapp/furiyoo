@@ -1,197 +1,142 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Furiyoo - India's First All-in-One Pet Care App</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <style>
-        :root {
-            --primary-teal: #4fd1c7;
-            --dark-teal: #319795;
-            --light-teal: #81e6d9;
-            --bg-teal: #e6fffa;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; }
-        .hero-section { background: linear-gradient(135deg, var(--primary-teal), var(--dark-teal)); color: white; padding: 80px 0; min-height: 100vh; display: flex; align-items: center; position: relative; overflow: hidden; }
-        .hero-content { position: relative; z-index: 2; }
-        .logo { font-size: 6rem; font-weight: 900; margin-bottom: 1rem; text-align: center; letter-spacing: 2px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
-        .tagline { font-size: 1.5rem; margin-bottom: 2rem; opacity: 0.95; }
-        .cta-buttons { display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 2rem; }
-        .btn-primary-custom, .btn-outline-custom { position: relative; background-color: transparent; border: 2px solid white; color: white; padding: 15px 30px; border-radius: 50px; font-weight: 600; transition: all 0.3s ease; }
-        .btn-primary-custom:hover, .btn-outline-custom:hover { background-color: white; color: var(--primary-teal); transform: translateY(-2px); }
-        .section-padding { padding: 80px 0; }
-        .section-title { font-size: 2.5rem; font-weight: bold; text-align: center; margin-bottom: 3rem; color: var(--dark-teal); }
-        .about-section { background-color: var(--bg-teal); }
-        .feature-card { background: white; padding: 2rem; border-radius: 20px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: transform 0.3s ease; height: 100%; }
-        .feature-card:hover { transform: translateY(-5px); }
-        .feature-icon { font-size: 3rem; margin-bottom: 1rem; color: var(--primary-teal); }
-        .testimonial-card { background: white; padding: 2rem; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center; height: 100%; }
-        .testimonial-avatar { width: 80px; height: 80px; border-radius: 50%; margin: 0 auto 1rem; background: linear-gradient(135deg, var(--primary-teal), var(--light-teal)); display: flex; align-items: center; justify-content: center; font-size: 2rem; }
-        .stars { color: #ffd700; margin-bottom: 1rem; }
-        .contact-section { background: var(--dark-teal); color: white; }
-        .contact-section h2 { color: white; }
-    </style>
-</head>
-<body>
-    <!-- Hero Section -->
-    <section class="hero-section">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8 text-center hero-content">
-                    <h1 class="logo">FURIYOO</h1>
-                    <p class="tagline">India's First All-in-One Pet Care App</p>
-                    <div class="cta-buttons">
-                        <button class="btn btn-primary-custom" onclick="orderFromFurMart()">Order from FurMart</button>
-                        <button class="btn btn-outline-custom" onclick="findMatch()">Find a Match with FurMatch</button>
-                        <button class="btn btn-primary-custom" onclick="bookGrooming()">Book FurGroom</button>
-                        <button class="btn btn-outline-custom" onclick="bookTraining()">Book FurTraining</button>
-                        <button class="btn btn-primary-custom" onclick="bookBoarding()">Book FurBoarding</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+import { motion } from "framer-motion";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { PawPrint, ShoppingBag, Scissors, GraduationCap, Home } from "lucide-react";
 
-    <!-- About Section -->
-    <section class="about-section section-padding">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8 text-center">
-                    <h2 class="section-title">About Furiyoo</h2>
-                    <p class="lead">Furiyoo is India’s first all-in-one pet care platform. From FurMart to FurGroom, FurMatch, FurTraining, and FurBoarding, we cover every aspect of your pet’s life. Whether it’s food, grooming, companionship, training, or safe stays — we’ve got you covered.</p>
-                </div>
-            </div>
-            <div class="row g-4 mt-4">
-                <div class="col-md-4">
-                    <div class="feature-card">
-                        <div class="feature-icon">🛒</div>
-                        <h5>FurMart</h5>
-                        <p>Get pet food, toys, and accessories delivered quickly and reliably.</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="feature-card">
-                        <div class="feature-icon">✂️</div>
-                        <h5>FurGroom</h5>
-                        <p>Professional grooming sessions to keep your pets looking their best.</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="feature-card">
-                        <div class="feature-icon">❤️</div>
-                        <h5>FurMatch</h5>
-                        <p>Find the perfect companion or breeding partner for your pet safely.</p>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="feature-card">
-                        <div class="feature-icon">🎓</div>
-                        <h5>FurTraining</h5>
-                        <p>Obedience and behavior training with professional pet trainers.</p>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="feature-card">
-                        <div class="feature-icon">🏠</div>
-                        <h5>FurBoarding</h5>
-                        <p>Luxury and safe pet boarding so your furry friends are cared for while you’re away.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+export default function FuriyooLanding() {
+  const services = [
+    {
+      icon: <PawPrint className="w-10 h-10 text-teal-600" />,
+      title: "FurMatch",
+      desc: "Verified Pet Matchmaking for safe & ethical breeding.",
+      link: "https://wa.me/9391912475?text=Hi%20Furiyoo!%20I’d%20like%20to%20find%20a%20safe%20match%20for%20my%20pet.%20Can%20you%20help%20me?",
+    },
+    {
+      icon: <ShoppingBag className="w-10 h-10 text-teal-600" />,
+      title: "FurMart",
+      desc: "10-Minute Delivery of food, toys & essentials.",
+      link: "https://wa.me/9391912475?text=Hi%20Furiyoo!%20I%20want%20to%20order%20food/supplies%20for%20my%20pet.%20Please%20guide%20me.",
+    },
+    {
+      icon: <Scissors className="w-10 h-10 text-teal-600" />,
+      title: "FurGroom",
+      desc: "Professional doorstep grooming in spa vans.",
+      link: "https://wa.me/9391912475?text=Hi%20Furiyoo!%20I’d%20like%20to%20book%20a%20grooming%20session%20for%20my%20pet.%20What%20slots%20are%20available?",
+    },
+    {
+      icon: <GraduationCap className="w-10 h-10 text-teal-600" />,
+      title: "FurTraining",
+      desc: "Expert trainers for obedience & tricks.",
+      link: "https://wa.me/9391912475?text=Hi%20Furiyoo!%20I’m%20interested%20in%20training%20for%20my%20dog.%20Can%20you%20share%20the%20details?",
+    },
+    {
+      icon: <Home className="w-10 h-10 text-teal-600" />,
+      title: "FurBoarding",
+      desc: "Safe & loving boarding while you’re away.",
+      link: "https://wa.me/9391912475?text=Hi%20Furiyoo!%20I%20need%20boarding%20services%20for%20my%20pet.%20Can%20you%20tell%20me%20how%20it%20works?",
+    },
+  ];
 
-    <!-- Testimonials Section -->
-    <section class="section-padding">
-        <div class="container">
-            <h2 class="section-title">What Pet Parents Say</h2>
-            <div class="row g-4">
-                <div class="col-lg-3">
-                    <div class="testimonial-card">
-                        <div class="testimonial-avatar">🐕</div>
-                        <div class="stars mb-3">★★★★★</div>
-                        <p class="mb-3">"Furiyoo made finding premium food for my Golden Retriever so easy. Fast delivery and great quality!"</p>
-                        <h6>Priya Sharma</h6>
-                        <small class="text-muted">Golden Retriever Mom</small>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="testimonial-card">
-                        <div class="testimonial-avatar">🐱</div>
-                        <div class="stars mb-3">★★★★★</div>
-                        <p class="mb-3">"FurMatch helped me find the perfect breeding partner for my Persian cat. Professional and reliable service!"</p>
-                        <h6>Rahul Gupta</h6>
-                        <small class="text-muted">Persian Cat Dad</small>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="testimonial-card">
-                        <div class="testimonial-avatar">🐩</div>
-                        <div class="stars mb-3">★★★★★</div>
-                        <p class="mb-3">"FurTraining sessions changed my Labrador completely. Obedient, well-behaved, and happier!"</p>
-                        <h6>Anita Desai</h6>
-                        <small class="text-muted">Labrador Parent</small>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="testimonial-card">
-                        <div class="testimonial-avatar">🐶</div>
-                        <div class="stars mb-3">★★★★★</div>
-                        <p class="mb-3">"FurBoarding gave me peace of mind during my travels. My pet was cared for like family!"</p>
-                        <h6>Vikram Singh</h6>
-                        <small class="text-muted">Poodle Parent</small>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+  return (
+    <div className="font-sans bg-white text-gray-900">
+      {/* Hero Section */}
+      <section className="h-screen flex flex-col items-center justify-center text-center px-6 bg-gradient-to-b from-white to-teal-50">
+        <motion.h1
+          initial={{ opacity: 0, y: -30 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-4xl md:text-6xl font-extrabold text-teal-700"
+        >
+          All-in-one pet care at your fingertips – Furiyoo
+        </motion.h1>
+        <p className="mt-4 text-lg md:text-xl text-gray-600">
+          Match. Feed. Groom. Train. Board. All in one app.
+        </p>
+        <a
+          href="https://wa.me/9391912475?text=Hi%20Furiyoo!%20I’m%20interested%20in%20your%20services."
+          target="_blank"
+        >
+          <Button className="mt-6 px-6 py-3 rounded-2xl text-lg shadow-lg bg-teal-600 hover:bg-teal-700 text-white animate-pulse">
+            Chat with us on WhatsApp
+          </Button>
+        </a>
+      </section>
 
-    <!-- Contact Section -->
-    <section class="contact-section section-padding">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8 text-center">
-                    <h2 class="section-title">Contact Us</h2>
-                    <p class="lead mb-4">We’d love to hear from you! Reach out anytime for support, feedback, or partnership opportunities.</p>
-                    <p><i class="fas fa-envelope me-2"></i> support@furiyoo.com</p>
-                    <p><i class="fas fa-phone me-2"></i> +91 93919 12475</p>
-                    <p><i class="fas fa-map-marker-alt me-2"></i> Hyderabad, India</p>
-                </div>
-            </div>
-        </div>
-    </section>
+      {/* About Section */}
+      <section className="max-w-4xl mx-auto px-6 py-20 text-center">
+        <h2 className="text-3xl font-bold text-teal-700">About Furiyoo</h2>
+        <p className="mt-6 text-lg text-gray-700 leading-relaxed">
+          Furiyoo is a one-stop pet care platform designed to make pet parenting easier, safer, and happier. From verified matchmaking with FurMatch, 10-min food delivery with FurMart, doorstep FurGroom, expert FurTraining, to safe and loving FurBoarding – Furiyoo is your trusted partner for everything pets.
+        </p>
+      </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container text-center">
-            <p>&copy; 2025 Furiyoo Nexus Pvt Ltd. All rights reserved.</p>
+      {/* Features Section */}
+      <section className="px-6 py-20 bg-teal-50">
+        <h2 className="text-3xl font-bold text-center text-teal-700 mb-12">Our Services</h2>
+        <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-3">
+          {services.map((service, i) => (
+            <motion.div
+              key={i}
+              whileHover={{ scale: 1.05 }}
+              className="cursor-pointer"
+            >
+              <Card className="p-6 rounded-2xl shadow-md bg-white hover:shadow-xl transition">
+                <CardContent className="flex flex-col items-center text-center gap-4">
+                  {service.icon}
+                  <h3 className="text-xl font-semibold text-teal-700">{service.title}</h3>
+                  <p className="text-gray-600 text-sm">{service.desc}</p>
+                  <a href={service.link} target="_blank">
+                    <Button className="bg-teal-600 hover:bg-teal-700 text-white rounded-xl mt-4">
+                      Connect on WhatsApp
+                    </Button>
+                  </a>
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
         </div>
-    </footer>
+      </section>
 
-    <script>
-        function orderFromFurMart() {
-            const msg = "Hi! I'm interested in ordering from FurMart. Can you help me with pet food and supplies?";
-            window.open(`https://wa.me/919391912475?text=${encodeURIComponent(msg)}`, '_blank');
-        }
-        function findMatch() {
-            const msg = "Hello! I'd like to use FurMatch to find a breeding partner for my pet. Can you guide me?";
-            window.open(`https://wa.me/919391912475?text=${encodeURIComponent(msg)}`, '_blank');
-        }
-        function bookGrooming() {
-            const msg = "Hello! I'd like to book FurGroom services for my pet. Can you share available slots and pricing?";
-            window.open(`https://wa.me/919391912475?text=${encodeURIComponent(msg)}`, '_blank');
-        }
-        function bookTraining() {
-            const msg = "Hi! I'd like to book FurTraining sessions for my pet. Can you share details and timings?";
-            window.open(`https://wa.me/919391912475?text=${encodeURIComponent(msg)}`, '_blank');
-        }
-        function bookBoarding() {
-            const msg = "Hi! I'm interested in FurBoarding for my pet. Can you provide boarding options and pricing?";
-            window.open(`https://wa.me/919391912475?text=${encodeURIComponent(msg)}`, '_blank');
-        }
-    </script>
-</body>
-</html>
+      {/* Reviews Section */}
+      <section className="px-6 py-20 max-w-5xl mx-auto text-center">
+        <h2 className="text-3xl font-bold text-teal-700 mb-12">What Pet Parents Say</h2>
+        <div className="grid gap-8 md:grid-cols-3">
+          {["FurMatch helped me find a safe partner for my Labrador – smooth process, trustworthy service.",
+            "FurMart delivered food in 8 minutes, life saver!",
+            "The grooming van is like a pet spa on wheels – amazing experience."].map((review, i) => (
+              <motion.div whileHover={{ scale: 1.05 }} key={i} className="bg-white p-6 rounded-2xl shadow-md">
+                <p className="text-gray-700 italic">“{review}”</p>
+              </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* Founder Section */}
+      <section className="px-6 py-20 text-center bg-teal-50">
+        <h2 className="text-3xl font-bold text-teal-700">Meet the Founder</h2>
+        <p className="mt-6 text-lg text-gray-700 max-w-3xl mx-auto">
+          Founded by <span className="font-semibold">Avinaash</span>, a passionate pet parent who turned his personal challenges into India’s first complete pet ecosystem.
+        </p>
+        <div className="mt-6 text-gray-600 space-y-2">
+          <p>📧 support@furiyoo.com | avinaash@furiyoo.com</p>
+          <p>📱 WhatsApp: 9391912475</p>
+          <p>📸 Instagram: @furiyooapp</p>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="px-6 py-10 text-center bg-teal-700 text-white">
+        <div className="flex justify-center gap-6 mb-6">
+          <a href="#about">About</a>
+          <a href="#services">Services</a>
+          <a href="#contact">Contact</a>
+          <a href="#privacy">Privacy Policy</a>
+        </div>
+        <div className="flex justify-center gap-6">
+          <a href="https://instagram.com/furiyooapp" target="_blank">Instagram</a>
+          <a href="https://wa.me/9391912475" target="_blank">WhatsApp</a>
+        </div>
+        <p className="mt-6 text-sm">© {new Date().getFullYear()} Furiyoo. All rights reserved.</p>
+      </footer>
+    </div>
+  );
+}
